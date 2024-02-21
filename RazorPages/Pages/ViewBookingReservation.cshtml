@@ -1,0 +1,38 @@
+﻿@page
+@model RazorPages.Pages.ViewBookingReservationModel
+@{
+    ViewData["Title"] = "Bookings";
+}
+    <table>
+        <thead>
+            <tr>
+                <th>Booking Reservation ID</th>
+                <th>Booking Date</th>
+                <th>Total Price</th>
+                <th>Customer ID</th>
+                <th>Booking Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var booking in Model.Bookings)
+            {
+                <tr>
+                    <td>@booking.BookingReservationId</td>
+                    <td>@booking.BookingDate</td>
+                    <td>@booking.TotalPrice</td>
+                    <td>@booking.CustomerId</td>
+                    <td>@booking.BookingStatus</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+<div>
+    <h1>@Model.Message</h1>
+</div>
+
+    
+
+
+
+

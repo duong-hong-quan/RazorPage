@@ -1,0 +1,110 @@
+﻿@page
+@model RazorPages.Pages.ManageCustomerModel
+@{
+}
+<head>
+    <title>Customer Information</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        input[type=radio] {
+            margin-right: 5px;
+        }
+
+        button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Customer Information</h1>
+
+    <form method="post" asp-page-handler="SelectCustomer">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Select</th>
+                    <th>Customer ID</th>
+                    <th>Full Name</th>
+                    <th>Telephone</th>
+                    <th>Email Address</th>
+                    <th>Birthday</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var customer in Model.Customers)
+                {
+                    <tr>
+                        <td><input type="radio" name="selectedCustomerId" value="@customer.CustomerId" /></td>
+                        <td>@customer.CustomerId</td>
+                        <td>@customer.CustomerFullName</td>
+                        <td>@customer.Telephone</td>
+                        <td>@customer.EmailAddress</td>
+                        <td>@customer.CustomerBirthday</td>
+                        <td>@customer.CustomerStatus</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </form>
+
+    <button type="button" class="btn btn-primary">
+        Create Customer
+    </button>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" id="closeButton" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="mainCloseButton" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    document.getElementById("createBtn").onclick = function () {
+        openPopup('@Url.Page("CreateCustomer")');
+    };
+
+
+    function openPopup(url) {
+        var popupWindow = window.open(url, "_blank", "width=600, height=400, top=100, left=100");
+        // Adjust the width, height, top, and left values as per your requirement
+    }
+    $('#showModalbutton').on('click', function () {
+        $('#exampleModal').modal('show');
+    });
+</script>

@@ -1,0 +1,53 @@
+﻿@page
+@model RazorPages.Pages.RegisterModel
+@{
+}
+<h1>Register</h1>
+
+<form method="post" asp-page="Regisrter">
+    <div>
+        <label asp-for="CustomerFullName"></label>
+        <input asp-for="CustomerFullName" />
+        <span asp-validation-for="CustomerFullName"></span>
+    </div>
+
+    <div>
+        <label asp-for="Telephone"></label>
+        <input asp-for="Telephone" />
+        <span asp-validation-for="Telephone"></span>
+    </div>
+
+    <div>
+        <label asp-for="EmailAddress"></label>
+        <input asp-for="EmailAddress" />
+        <span asp-validation-for="EmailAddress"></span>
+    </div>
+
+    <div>
+        <label asp-for="CustomerBirthday"></label>
+        <input asp-for="CustomerBirthday" type="date" />
+        <span asp-validation-for="CustomerBirthday"></span>
+    </div>
+
+    <div>
+        <label asp-for="CustomerStatus"></label>
+        <select asp-for="CustomerStatus" asp-items="@RegisterModel.SelectStatus()">
+            <option>Please select</option>
+        </select>
+        <span asp-validation-for="CustomerStatus"></span> 
+    </div>
+
+    <div>
+        <label asp-for="Password"></label>
+        <input asp-for="Password" type="password" />
+        <span asp-validation-for="Password"></span>
+    </div>
+
+    <button type="submit">Register</button>
+</form>
+@if (!string.IsNullOrEmpty(Model.ErrorMsg))
+{
+    <div class="alert alert-danger">
+        @Model.ErrorMsg
+    </div>
+}
